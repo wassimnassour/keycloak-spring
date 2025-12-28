@@ -1,3 +1,9 @@
+version: '3'
+
+networks:
+  kc-network:
+    driver: bridge
+
 services:
   keycloak:
     container_name: keycloak_demo
@@ -11,6 +17,34 @@ services:
       - keycloak_data:/opt/keycloak/data
     command:
       - 'start-dev'
+    networks:
+      - kc-network
+
+  openldap:
+      image: osixia/openldap:1.5.0
+      container_name: openldap
+      environment:
+        # Creates dc=myorg,dc=com
+        LDAP_ORGANISATION: "MyOrg"
+        LDAP_DOMAIN: "myorg.com"
+        LDAP_ADMIN_PASSWORD: admin
+      ports:
+        - "389:389"
+        - "636:636"
+      networks:
+        - kc-network
+  phpldapadmin:
+    image: osixia/phpldapadmin:0.9.0
+    container_name: phpldapadmin
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: openldap
+      PHPLDAPADMIN_HTTPS: "false"
+    ports:
+      - "8081:80"
+    depends_on:
+      - openldap
+    networks:
+      - kc-network    
 
 volumes:
   keycloak_data:

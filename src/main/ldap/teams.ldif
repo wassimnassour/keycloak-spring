@@ -1,0 +1,15 @@
+
+dn: ou=groups,dc=myorg,dc=com
+objectClass: organizationalUnit
+ou: groups
+
+dn: cn=TeamA,ou=groups,dc=myorg,dc=com
+objectClass: groupOfNames
+cn: TeamA
+member: uid=john,ou=users,dc=myorg,dc=com
+member: uid=sarah,ou=users,dc=myorg,dc=com
+
+dn: cn=TeamB,ou=groups,dc=myorg,dc=com
+objectClass: groupOfNames
+cn: TeamB
+member: uid=john,ou=users,dc=myorg,dc=com
