@@ -1,0 +1,70 @@
+
+
+# ===============================
+# ORGANIZATIONAL UNITS
+# ===============================
+dn: ou=users,dc=myorg,dc=com
+objectClass: organizationalUnit
+ou: users
+
+dn: ou=groups,dc=myorg,dc=com
+objectClass: organizationalUnit
+ou: groups
+
+dn: ou=neworg,dc=myorg,dc=com
+objectClass: organizationalUnit
+ou: neworg
+
+# ===============================
+# USERS under users OU
+# ===============================
+dn: uid=john,ou=users,dc=myorg,dc=com
+objectClass: inetOrgPerson
+cn: John Doe
+sn: Doe
+uid: john
+mail: john@myorg.com
+
+dn: uid=sarah,ou=users,dc=myorg,dc=com
+objectClass: inetOrgPerson
+cn: Sarah Smith
+sn: Smith
+uid: sarah
+mail: sarah@myorg.com
+
+# ===============================
+# USERS under neworg OU
+# ===============================
+dn: uid=alice,ou=neworg,dc=myorg,dc=com
+objectClass: inetOrgPerson
+cn: Alice Johnson
+sn: Johnson
+uid: alice
+mail: alice@myorg.com
+
+dn: uid=bob,ou=neworg,dc=myorg,dc=com
+objectClass: inetOrgPerson
+cn: Bob Brown
+sn: Brown
+uid: bob
+mail: bob@myorg.com
+
+# ===============================
+# GROUPS
+# ===============================
+dn: cn=TeamA,ou=groups,dc=myorg,dc=com
+objectClass: groupOfNames
+cn: TeamA
+member: uid=john,ou=users,dc=myorg,dc=com
+member: uid=sarah,ou=users,dc=myorg,dc=com
+
+dn: cn=TeamB,ou=groups,dc=myorg,dc=com
+objectClass: groupOfNames
+cn: TeamB
+member: uid=john,ou=users,dc=myorg,dc=com
+
+dn: cn=NewOrgTeam,ou=groups,dc=myorg,dc=com
+objectClass: groupOfNames
+cn: NewOrgTeam
+member: uid=alice,ou=neworg,dc=myorg,dc=com
+member: uid=bob,ou=neworg,dc=myorg,dc=com

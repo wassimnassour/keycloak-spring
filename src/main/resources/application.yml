@@ -8,5 +8,16 @@ spring:
                  jwt:
                    issuer-uri: http://localhost:9090/realms/Test-auth
 
+keycloakAdmin :
+  app1:
+    realm: "realm"
+    clientId: "clientId"
+    clientSecret: "clientSecret"
+    serverUrl: "http:localhost:9000"
+
+
+
+
+
                   
 
